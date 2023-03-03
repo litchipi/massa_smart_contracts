@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { deploySC, WalletClient, ISCData } from '@massalabs/massa-sc-deployer';
-import { Args, MassaCoin } from '@massalabs/massa-web3';
+import { Args, MassaCoin, IEvent } from '@massalabs/massa-web3';
 
 dotenv.config();
 
@@ -22,15 +22,18 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(path.dirname(__filename));
 
+const data = (deployedInfo.events?.find((e) => e.data) as IEvent).data;
+const address = data.split('Contract deployed at address:')[1].trim();
+
 (async () => {
-  await deploySC(
+let deployedInfo = await deploySC(
     publicApi,
     deployerAccount,
     [
       {
         data: readFileSync(path.join(__dirname, 'build', 'main.wasm')),
         coins: new MassaCoin(0.1),
-        args: new Args().addString('Test'),
+        args: new Args().addString(address).addString('Bobby'),
       } as ISCData,
     ],
     0,
