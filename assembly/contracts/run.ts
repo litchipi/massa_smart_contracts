@@ -31,6 +31,22 @@ function callValidateAddress(binaryArgs: StaticArray<u8>): StaticArray<u8> {
   return res;
 }
 
+function callSetKeys(binaryArgs: StaticArray<u8>): StaticArray<u8> {
+  const args = new Args(binaryArgs);
+  const address = new Address(
+    args.nextString().expect('Address argument is missing or invalid'),
+  );
+
+  call(
+    address,
+    'test_set_keys',
+    new Args().add(args.nextBytes().expect("Keys argument missing")).add(args.nextBytes().expect("Value argument missing")),
+    0,
+  );
+
+  return [];
+}
+
 function callGetKeys(binaryArgs: StaticArray<u8>): StaticArray<u8> {
   const args = new Args(binaryArgs);
   const address = new Address(
@@ -43,7 +59,6 @@ function callGetKeys(binaryArgs: StaticArray<u8>): StaticArray<u8> {
     new Args().add(args.nextBytes().expect("Keys argument missing")),
     0,
   );
-
   return [];
 }
 

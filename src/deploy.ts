@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { deploySC, WalletClient, ISCData } from '@massalabs/massa-sc-deployer';
-import { Args, MassaCoin, IEvent } from '@massalabs/massa-web3';
+import { Args, IEvent } from '@massalabs/massa-web3';
 
 dotenv.config();
 
