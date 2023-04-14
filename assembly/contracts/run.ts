@@ -6,7 +6,7 @@ import { Args } from '@massalabs/as-types';
  *
  * @param _ - not used
  */
-export function constructor(args: StaticArray<u8>): StaticArray<u8> {
+export function constructor(_: StaticArray<u8>): StaticArray<u8> {
   if (!callerHasWriteAccess()) {
     return [];
   }
