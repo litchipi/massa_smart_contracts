@@ -1,6 +1,6 @@
 // The entry file of your WebAssembly module.
-import { Storage, callerHasWriteAccess, generateEvent, getKeys, getKeysOf, validateAddress } from '@massalabs/massa-as-sdk';
-import { Args, stringToBytes } from '@massalabs/as-types';
+import { Storage, generateEvent, getKeys, getKeysOf, validateAddress } from '@massalabs/massa-as-sdk';
+import { Args } from '@massalabs/as-types';
 
 export function test_address_validation(binaryArgs: StaticArray<u8>): StaticArray<u8> {
   const args = new Args(binaryArgs);
