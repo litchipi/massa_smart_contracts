@@ -17,8 +17,9 @@ export function test_address_validation(binaryArgs: StaticArray<u8>): StaticArra
 
 export function test_set_keys(binaryArgs: StaticArray<u8>): StaticArray<u8> {
   const args = new Args(binaryArgs);
-  Storage.set(args.nextBytes().expect("Keys argument missing"), args.nextBytes().expect("Value argument missing")); 
-  return [1]; 
+  const keys = args.nextBytes().expect("Keys argument missing");
+  Storage.set(keys, args.nextBytes().expect("Value argument missing")); 
+  return keys; 
 }
 
 export function test_get_keys(binaryArgs: StaticArray<u8>): StaticArray<u8> {
